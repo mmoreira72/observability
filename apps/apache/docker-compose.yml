@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  apache-with-exporter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: apache-with-exporter
+    ports:
+      - "8081:80"    # Expose Apache on port 8081
+      - "9117:9117"  # Expose Apache Exporter metrics on port 9117
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge

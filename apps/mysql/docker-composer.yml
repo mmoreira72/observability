@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  mysql-exporter:
+    image: prom/mysqld-exporter:latest
+    container_name: mysql-exporter
+    restart: always
+    ports:
+      - "9104:9104"  # Expose the exporter metrics on port 9104
+    volumes:
+      - ./my.cnf:/etc/mysql/my.cnf:ro  # Mount .my.cnf into the container
+    environment:
+      - CONFIG_SOURCE=/etc/mysql/my.cnf  # Optional: specify the config file path if needed
