@@ -3,6 +3,8 @@ services:
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
+    environment:
+      - PROMETHEUS_WEB_EXTERNAL_URL=https://prometheus.scit.pt
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
