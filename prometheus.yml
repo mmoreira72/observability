@@ -1,0 +1,41 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  # - job_name: 'node-exporter'
+  #   static_configs:
+  #     - targets: ['node-exporter:9100']
+
+  # - job_name: 'cadvisor'
+  #   static_configs:
+  #     - targets: ['cadvisor:8080']
+
+  # - job_name: 'apache-php-exporter'
+  #   static_configs:
+  #     - targets: ['apache-with-exporter:9117']
+  
+  - job_name: 'db1-exporter'
+    static_configs:
+      - targets: ['185.185.50.230:9104']
+      - targets: ['185.185.50.230:9100']
+
+  - job_name: 'db2-exporter'
+    static_configs:
+      - targets: ['185.180.223.179:9104']
+      - targets: ['185.180.223.179:9100']
+
+  - job_name: 'app2-exporter'
+    static_configs:
+      - targets: ['185.182.193.248:9100']
+      - targets: ['185.182.193.248:9999']
+
+  - job_name: 'app1-exporter'
+    static_configs:
+      - targets: ['185.132.132.40:9100']
+      - targets: ['185.132.132.40:9999']
+
+remote_write:
+  - url: "http://promscale:9201/write"
+
+remote_read:
+  - url: "http://promscale:9201/read"
