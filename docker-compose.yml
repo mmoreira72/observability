@@ -16,6 +16,7 @@ services:
     volumes:
       - grafana-storage:/var/lib/grafana
     environment:
+      - GF_SERVER_ROOT_URL=https://grafana.scit.pt
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     networks:
