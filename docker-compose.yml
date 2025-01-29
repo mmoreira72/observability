@@ -30,6 +30,7 @@ services:
       - "3100:3100"
     volumes:
       - ./loki-config.yml:/etc/loki/loki-config.yml
+      - ./loki:/loki  # Persist Loki data to a volume
     command: -config.file=/etc/loki/loki-config.yml
     networks:
       - monitoring
