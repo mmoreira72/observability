@@ -15,6 +15,6 @@ scrape_configs:
           - localhost
         labels:
           job: "apache"
-          service_name: "apache_local"
+          service_name: "apache_access"
           instance: "local"
-          __path__: "/var/log/apache2/*.log"
+          __path__: "/var/log/apache2/*access*.log"
