@@ -171,196 +171,6 @@
                 "value": 80
               }
             ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 2,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.5.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "eebdossk5v4zke"
-          },
-          "expr": "rate(node_cpu_seconds_total{instance='185.132.132.40:9100', mode='iowait'}[1m]) * 100",
-          "refId": "A"
-        }
-      ],
-      "title": "I/O Wait (%)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "eebdossk5v4zke"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 8
-      },
-      "id": 5,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.5.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "eebdossk5v4zke"
-          },
-          "expr": "rate(container_cpu_usage_seconds_total{instance=\"185.132.132.40:9999\"}[1m]) * 100",
-          "legendFormat": "{{name}}",
-          "refId": "A"
-        }
-      ],
-      "title": "Container CPU Usage (%)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "eebdossk5v4zke"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
           },
           "unit": "bytes"
         },
@@ -370,7 +180,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 0
       },
       "id": 6,
       "options": {
@@ -393,8 +203,10 @@
             "type": "prometheus",
             "uid": "eebdossk5v4zke"
           },
-          "expr": "container_memory_working_set_bytes{instance=\"185.132.132.40:9999\"}",
+          "editorMode": "code",
+          "expr": "sum(container_memory_working_set_bytes{  instance=\"185.132.132.40:9999\", name=~\".*(php|clube43|nginx|redmine|sftp).*\"}) by (name)",
           "legendFormat": "{{name}}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -465,9 +277,9 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 8
       },
-      "id": 3,
+      "id": 2,
       "options": {
         "legend": {
           "calcs": [],
@@ -488,11 +300,14 @@
             "type": "prometheus",
             "uid": "eebdossk5v4zke"
           },
-          "expr": "100 * (1 - ((node_memory_MemFree_bytes{instance='185.132.132.40:9100'} + node_memory_Buffers_bytes{instance='185.132.132.40:9100'} + node_memory_Cached_bytes{instance='185.132.132.40:9100'}) / node_memory_MemTotal_bytes{instance='185.132.132.40:9100'}))",
+          "editorMode": "code",
+          "expr": "rate(node_cpu_seconds_total{instance='185.132.132.40:9100', mode='iowait'}[1m]) * 100",
+          "legendFormat": "{{name}}",
+          "range": true,
           "refId": "A"
         }
       ],
-      "title": "Memory Usage (%)",
+      "title": "I/O Wait (%)",
       "type": "timeseries"
     },
     {
@@ -559,7 +374,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 8
       },
       "id": 4,
       "options": {
@@ -654,7 +469,7 @@
               }
             ]
           },
-          "unit": "bytes"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -662,9 +477,9 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 16
       },
-      "id": 7,
+      "id": 5,
       "options": {
         "legend": {
           "calcs": [],
@@ -686,9 +501,106 @@
             "uid": "eebdossk5v4zke"
           },
           "editorMode": "code",
-          "expr": "rate(container_fs_reads_bytes_total{instance=\"185.132.132.40:9999\"}[1m])",
-          "interval": "",
-          "legendFormat": "{{name}} read",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{ instance=\"185.132.132.40:9999\", name=~\".*(php|clube43|nginx|redmine|sftp).*\"}[1m])) by (name)",
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Container CPU Usage (%)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "eebdossk5v4zke"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "eebdossk5v4zke"
+          },
+          "editorMode": "code",
+          "expr": "rate(container_network_receive_bytes_total{instance=\"185.132.132.40:9999\", name=~\".*(php|clube43|nginx|redmine|sftp).*\"}[1m])",
+          "legendFormat": "{{name}} receive",
           "range": true,
           "refId": "A"
         },
@@ -698,13 +610,107 @@
             "uid": "eebdossk5v4zke"
           },
           "editorMode": "code",
-          "expr": "rate(container_fs_writes_bytes_total{instance=\"185.132.132.40:9999\"}[1m])",
-          "legendFormat": "{{name}} write",
+          "expr": "rate(container_network_transmit_bytes_total{instance=\"185.132.132.40:9999\", name=~\".*(php|clube43|nginx|redmine|sftp).*\"}[1m])",
+          "legendFormat": "{{name}} transmit",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Container Disk I/O (Bytes/sec)",
+      "title": "Container Network I/O (Bytes/sec)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "eebdossk5v4zke"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "eebdossk5v4zke"
+          },
+          "expr": "100 * (1 - ((node_memory_MemFree_bytes{instance='185.132.132.40:9100'} + node_memory_Buffers_bytes{instance='185.132.132.40:9100'} + node_memory_Cached_bytes{instance='185.132.132.40:9100'}) / node_memory_MemTotal_bytes{instance='185.132.132.40:9100'}))",
+          "refId": "A"
+        }
+      ],
+      "title": "Memory Usage (%)",
       "type": "timeseries"
     },
     {
@@ -774,7 +780,7 @@
         "x": 12,
         "y": 24
       },
-      "id": 8,
+      "id": 7,
       "options": {
         "legend": {
           "calcs": [],
@@ -796,8 +802,9 @@
             "uid": "eebdossk5v4zke"
           },
           "editorMode": "code",
-          "expr": "rate(container_network_receive_bytes_total{instance=\"185.132.132.40:9999\"}[1m])",
-          "legendFormat": "{{name}} receive",
+          "expr": "rate(container_fs_reads_bytes_total{instance=\"185.132.132.40:9999\", name=~\".*(php|clube43|nginx|redmine|sftp).*\"}[1m])",
+          "interval": "",
+          "legendFormat": "{{name}} read",
           "range": true,
           "refId": "A"
         },
@@ -807,13 +814,13 @@
             "uid": "eebdossk5v4zke"
           },
           "editorMode": "code",
-          "expr": "rate(container_network_transmit_bytes_total{instance=\"185.132.132.40:9999\"}[1m])",
-          "legendFormat": "{{name}} transmit",
+          "expr": "rate(container_fs_writes_bytes_total{instance=\"185.132.132.40:9999\", name=~\".*(php|clube43|nginx|redmine|sftp).*\"}[1m])",
+          "legendFormat": "{{name}} write",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Container Network I/O (Bytes/sec)",
+      "title": "Container Disk I/O (Bytes/sec)",
       "type": "timeseries"
     }
   ],
@@ -846,6 +853,6 @@
   "timezone": "browser",
   "title": "System Metrics for 185.132.132.40",
   "uid": "system-metrics-40",
-  "version": 6,
+  "version": 17,
   "weekStart": ""
-} 
+}
