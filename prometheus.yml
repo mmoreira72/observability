@@ -34,8 +34,8 @@ scrape_configs:
       - targets: ['185.132.132.40:9100']
       - targets: ['185.132.132.40:9999']
 
-remote_write:
-  - url: "http://promscale:9201/write"
+# remote_write:
+#   - url: "http://promscale:9201/write"
 
-remote_read:
-  - url: "http://promscale:9201/read"
+# remote_read:
+#   - url: "http://promscale:9201/read"
