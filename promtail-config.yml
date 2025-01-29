@@ -17,4 +17,4 @@ scrape_configs:
           job: "apache"
           service_name: "apache_local"
           instance: "local"
-          __path__: "/var/log/apache2/error.log"
+          __path__: "/var/log/apache2/*.log"
