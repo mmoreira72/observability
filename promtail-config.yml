@@ -19,7 +19,6 @@ scrape_configs:
           instance: "local"
           __path__: "/var/log/apache2/*access*.log"
 
-scrape_configs:
   - job_name: "local-apache-error-logs"
     static_configs:
       - targets:
