@@ -7,6 +7,8 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+    networks:
+      - monitoring
 
   grafana:
     image: grafana/grafana:latest
@@ -21,10 +23,30 @@ services:
     networks:
       - monitoring
 
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki-config.yml:/etc/loki/loki-config.yml
+    command: -config.file=/etc/loki/loki-config.yml
+    networks:
+      - monitoring
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    volumes:
+      - ./promtail-config.yml:/etc/promtail/promtail-config.yml
+      - /var/log/apache2:/var/log/apache2  # Mount Apache logs (Local Apache)
+    command: -config.file=/etc/promtail/promtail-config.yml
+    networks:
+      - monitoring
+
 networks:
   monitoring:
     driver: bridge
 
 volumes:
   grafana-storage:
-
